@@ -1,3 +1,10 @@
+body {
+  background: url("images/ima.jpg") no-repeat;
+  background-size: cover;
+  padding: auto;
+  margin: auto;
+}
+
 li a {
-  color: green;
+  color: white;
 }
