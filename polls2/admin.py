@@ -3,7 +3,14 @@ from django.contrib import admin
 from .models import Question, Choice
 
 # Register your models here.
-class ChoiceInline(admin.StackedInline):
+# Method I
+
+# class ChoiceInline(admin.StackedInline):
+#     model = Choice
+#     extra = 3
+
+# Method II
+class ChoiceInline(admin.TabularInline):
     model = Choice
     extra = 3
 
@@ -22,6 +29,13 @@ class QuestionAdmin(admin.ModelAdmin):
         ("Date information", {"fields": ["pub_date"], "classes": ["collapse"]}),
     ]
     inlines = [ChoiceInline]
+
+    # Displaying field names in the admin
+    list_display = ["question_text", "pub_date", "was_published_recently"]
+
+    # Using filters in the admin dashboard
+    list_filter = ["pub_date"]
+    search_fields = ["question_text"]
 
 admin.site.register(Question, QuestionAdmin)
 
